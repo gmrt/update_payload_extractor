@@ -435,9 +435,9 @@ class PayloadApplier(object):
           data_length=op.dst_length if op.dst_length else
           self._BytesInExtents(op.dst_extents, "%s.dst_extents"))
 
-      new_file_name = '/dev/fd/%d' % new_part_file.fileno()
+      new_file_name = new_part_file.name
       # Diff from source partition.
-      old_file_name = '/dev/fd/%d' % old_part_file.fileno()
+      old_file_name = old_part_file.name
 
       if op.type in (common.OpType.BSDIFF, common.OpType.SOURCE_BSDIFF,
                      common.OpType.BROTLI_BSDIFF):
