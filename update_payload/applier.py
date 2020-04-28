@@ -206,7 +206,7 @@ class PayloadApplier(object):
   applying an update payload.
   """
 
-  def __init__(self, payload, bsdiff_in_place=True, bspatch_path=None,
+  def __init__(self, payload, bsdiff_in_place=True, bspatch_path="./bspatch",
                puffpatch_path=None, truncate_to_expected_size=True):
     """Initialize the applier.
 
