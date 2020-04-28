@@ -207,7 +207,7 @@ class PayloadApplier(object):
   """
 
   def __init__(self, payload, bsdiff_in_place=True, bspatch_path="./bspatch",
-               puffpatch_path=None, truncate_to_expected_size=True):
+               puffpatch_path="./puffin", truncate_to_expected_size=True):
     """Initialize the applier.
 
     Args:
