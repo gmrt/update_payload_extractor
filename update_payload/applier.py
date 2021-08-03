@@ -57,7 +57,7 @@ from update_payload.error import PayloadError
 #
 def _VerifySha256(file_obj, expected_hash, name, length=-1):
   """Verifies the SHA256 hash of a file.
-
+  
   Args:
     file_obj: file object to read
     expected_hash: the hash digest we expect to be getting
@@ -68,6 +68,7 @@ def _VerifySha256(file_obj, expected_hash, name, length=-1):
     PayloadError if computed hash doesn't match expected one, or if fails to
     read the specified length of data.
   """
+  
   hasher = hashlib.sha256()
   block_length = 1024 * 1024
   max_length = length if length >= 0 else sys.maxsize
@@ -535,9 +536,9 @@ class PayloadApplier(object):
     # Do we have a source partition?
     if old_part_file_name:
       # Verify the source partition.
-      with open(old_part_file_name, 'rb') as old_part_file:
-        _VerifySha256(old_part_file, old_part_info.hash,
-                      'old ' + part_name, length=old_part_info.size)
+      # with open(old_part_file_name, 'rb') as old_part_file:
+      #   _VerifySha256(old_part_file, old_part_info.hash,
+      #                 'old ' + part_name, length=old_part_info.size)
       new_part_file_mode = 'r+b'
       open(new_part_file_name, 'w').close()
 
@@ -564,9 +565,9 @@ class PayloadApplier(object):
           new_part_file.truncate()
 
     # Verify the resulting partition.
-    with open(new_part_file_name, 'rb') as new_part_file:
-      _VerifySha256(new_part_file, new_part_info.hash,
-                    'new ' + part_name, length=new_part_info.size)
+    # with open(new_part_file_name, 'rb') as new_part_file:
+    #   _VerifySha256(new_part_file, new_part_info.hash,
+    #                 'new ' + part_name, length=new_part_info.size)
 
   def Run(self, new_parts, old_parts=None):
     """Applier entry point, invoking all update operations.
